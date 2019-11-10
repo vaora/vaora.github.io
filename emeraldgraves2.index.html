@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+	  .marker {
+  background-image: url('mapbox-icon');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbnVyYSIsImEiOiJjazE3amtzOGoxZDRkM21weW9zN3d1bWdyIn0.LpwvQ-ITmH9mr3dRtUKN9Q';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/evanura/ck2ozq4vk0yz01cn3h6yli6kp',
+  center: [-0, -0],
+  zoom: 2.8
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.2058020413696795, -37.49899843498237]
+    },
+    properties: {
+      title: 'Knight´s Guardian',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-14.312915090825527, -4.8549708821824]
+    },
+    properties: {
+      title: 'Argon´s Lodge',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-5.412832598614727, -4.6383401734042025]
+    },
+    properties: {
+      title: 'Briathos´ Steps',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-0.5101505726916002, 10.191606938441765]
+    },
+    properties: {
+      title: 'Direstone',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [3.5930396516856717, 10.41833367256595]
+    },
+    properties: {
+      title: 'Direstone Camp',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [18.39894770163812, 21.760693554923947]
+    },
+    properties: {
+      title: 'Elgar´nan´s Bastion',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [10.310994172466735, 18.13244171687596]
+    },
+    properties: {
+      title: 'Firewater Garden',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-16.22190536742619, 11.078059796131754]
+    },
+    properties: {
+      title: 'Gracevine',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-13.987708150920412, 11.47495634497615]
+    },
+    properties: {
+      title: 'Gracevine Camp',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [7.089100792129443, -33.22021075008132]
+    },
+    properties: {
+      title: 'Andruil´s Wall',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.688288742084183, -33.488993296020325]
+    },
+    properties: {
+      title: 'Andraste´s Light',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [7.703221924296486, -8.536622311891904]
+    },
+    properties: {
+      title: 'Andraste´s Mercy',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-12.201444301199786, 1.2423122374285072]
+    },
+    properties: {
+      title: 'Andraste´s Strenght',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [15.424896040159183, -23.013011099878995]
+    },
+    properties: {
+      title: 'Andraste´s Promise',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [12.897166146559925, -32.286600755221976]
+    },
+    properties: {
+      title: 'Great Bear Cove',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [21.016264517320906, 14.736532634570807]
+    },
+    properties: {
+      title: 'Hopwood',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-4.5070664809042, 6.907231193232178]
+    },
+    properties: {
+      title: 'The Lion´s Pavilion',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [12.618970612318321, -17.573618212796745]
+    },
+    properties: {
+      title: 'Nettle Pass',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [5.700265861847356, -6.138942107475941]
+    },
+    properties: {
+      title: 'Peacewood',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-0.10987475775243638, 17.264911213670317]
+    },
+    properties: {
+      title: 'Rush of Sighs',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [2.088539321769076, -0.14678746330544357]
+    },
+    properties: {
+      title: 'Silver Falls',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [10.891014947613371, 6.624504707976669]
+    },
+    properties: {
+      title: 'Silverspray Perch',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [12.298230742301598, 22.336242118674605]
+    },
+    properties: {
+      title: 'Southfinger Tower',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [13.581146120909466, 29.423131371325297]
+    },
+    properties: {
+      title: 'Southfinger Watch',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-0.5201604458136444, 23.762667209529653]
+    },
+    properties: {
+      title: 'Stonereach',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-21.034748929225998, 1.2352230300070346]
+    },
+    properties: {
+      title: 'Stonewolf Green',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.501988464716078, 37.76933324731678]
+    },
+    properties: {
+      title: 'Twisted Tree',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [19.122825505613832, -9.97643062205509]
+    },
+    properties: {
+      title: 'Veridium Mine',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0.1754060346809183, -11.285055479293106]
+    },
+    properties: {
+      title: 'Villa Maurel',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [5.0956267554634, -28.935669042112913]
+    },
+    properties: {
+      title: 'Watcher´s Canyon',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.706824978479403, -25.33421850326016]
+    },
+    properties: {
+      title: 'Watcher´s Reach',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [19.119481296660297, 24.439108094998915]
+    },
+    properties: {
+      title: 'Din´an Hanin',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [15.521861760861839, 5.129982434340107]
+    },
+    properties: {
+      title: 'Chateau d´Onterre',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [4.392208154866125, -38.923393387438054]
+    },
+    properties: {
+      title: 'Hill Camp',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [1.2170404337832679, -8.336116928557715]
+    },
+    properties: {
+      title: 'The Betrayer',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [14.204340945987838, -17.482969200889684]
+    },
+    properties: {
+      title: 'The Guide',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.690066372590195, -23.948789494354187]
+    },
+    properties: {
+      title: 'The Watcher',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-19.306645821483244, 0.6288589920604295]
+    },
+    properties: {
+      title: 'Whiteshadow',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [10.390104632373664, -24.242982997053147]
+    },
+    properties: {
+      title: 'Wolf falls',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [11.932491241137313, 17.630696060154477]
+    },
+    properties: {
+      title: 'Vallasdahlen',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-17.59589476432518, -11.000732131226357]
+    },
+    properties: {
+      title: 'Harrow',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-4.06531980505747, 8.099617833145018]
+    },
+    properties: {
+      title: 'The Lion´s Pavilion',
+      description: ''
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-9.811534709664329, 0.4306198225019813]
+    },
+    properties: {
+      title: 'Watcher´s Pass',
+      description: ''
+    }
+  }]
+};
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
+
+});
+
+
+
+</script>
+
+</body>
+</html>

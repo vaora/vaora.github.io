@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+	  .marker {
+  background-image: url('mapbox-icon');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbnVyYSIsImEiOiJjazE3amtzOGoxZDRkM21weW9zN3d1bWdyIn0.LpwvQ-ITmH9mr3dRtUKN9Q';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/evanura/ck2ow0ut113rn1co3jmg4vi2d',
+  center: [0, 0],
+  zoom: 2.8
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [7.871043422081243, -18.948879178383578]
+    },
+    properties: {
+      title: 'The Black Fens',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-2.8076419935172225, -1.653831309264561]
+    },
+    properties: {
+      title: 'Caer Bronach',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [1.4622172388884564, -2.234165784359064]
+    },
+    properties: {
+      title: 'The Gallows of Caer Bronach',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [10.350042667205798, -1.6264527094681966]
+    },
+    properties: {
+      title: 'Dead Man´s Pass',
+      description: 'Alue: sola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-8.028880510918498, 19.48175004122328]
+    },
+    properties: {
+      title: 'East Side Hills',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-12.232556760207672, 1.6090382284963027]
+    },
+    properties: {
+      title: 'The Flats',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [16.008600828638805, -13.540694817480443]
+    },
+    properties: {
+      title: 'Forester Homestead',
+      description: 'Alue: talo'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [14.955799908117342, 7.889598155521753]
+    },
+    properties: {
+      title: 'Glenmorgan Mine',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [7.425881311539229, -5.458731455977187]
+    },
+    properties: {
+      title: 'Hilltop Farm',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [18.418152247614103, -7.649980394789154]
+    },
+    properties: {
+      title: 'Linden Farm',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-2.923895724978138, 6.298628525812902]
+    },
+    properties: {
+      title: 'New Crestwood Docks',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-16.04219609049585, 23.593687887907038]
+    },
+    properties: {
+      title: 'North Gate',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-21.642372856775637, 13.944375884359303]
+    },
+    properties: {
+      title: 'Old Crestwood',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0.45527990953917197, 4.971172050737877]
+    },
+    properties: {
+      title: 'Old Market Road',
+      description: 'Alue: tie'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-20.797886924875115, 15.892518128218384]
+    },
+    properties: {
+      title: 'Mayor´s Old Home',
+      description: 'Talo'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [21.160437001214405, -7.980779017609464]
+    },
+    properties: {
+      title: 'Old Whitter´s Farm',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.9561769944263, 1.997557365403793]
+    },
+    properties: {
+      title: 'Rocky Slope',
+      description: 'Alue: rinne'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [24.314035946778404, -9.44897396577673]
+    },
+    properties: {
+      title: 'South Road',
+      description: 'Alue, tie'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-14.422189474925744, -11.094545861925823]
+    },
+    properties: {
+      title: 'The Rusted Horn',
+      description: 'Majatalo'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [22.243976853922163, -3.5569041246473034]
+    },
+    properties: {
+      title: 'Three Trout Pond',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [1.042367076180426, 14.235504443441755]
+    },
+    properties: {
+      title: 'Village of Crestwood',
+      description: 'Alue: kylä'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-22.017791409341726, 20.1674119732032]
+    },
+    properties: {
+      title: 'Flooded caves',
+      description: 'Alue, luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-17.70879885974773, 21.16586741392993]
+    },
+    properties: {
+      title: 'North Gate Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [20.31726933497714, -0.9324722646418593]
+    },
+    properties: {
+      title: 'Three Trout Farm Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [1.519659299356249, -22.894367049636415]
+    },
+    properties: {
+      title: 'Fereldan Wyvern Statues',
+      description: 'Patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-15.356531280842319, 6.480438717911966]
+    },
+    properties: {
+      title: 'Fisherman´s Hut',
+      description: 'Talo'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [4.130186278528072, 6.864469149636619]
+    },
+    properties: {
+      title: 'Hidden Cave',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-2.3187701300690833, -19.138653340767092]
+    },
+    properties: {
+      title: 'Lawspeaker´s Assembly',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [5.860665084925699, 17.7979648786134]
+    },
+    properties: {
+      title: 'Memory of the Drowned',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [28.547886986686535, -4.846272750023417]
+    },
+    properties: {
+      title: 'The Pit in the Pond',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [2.6448961827915127, -9.868680918854253]
+    },
+    properties: {
+      title: 'Wyvern´s Watch',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [11.64591842455468, 6.15109235431585]
+    },
+    properties: {
+      title: 'The Guide to Falon´Din',
+      description: 'Maamerkki, patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-5.724374819407444, -0.3396588216668732]
+    },
+    properties: {
+      title: 'Rusted Gate',
+      description: 'Luola'
+    }
+  }]
+};
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
+
+});
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+	  .marker {
+  background-image: url('mapbox-icon');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbnVyYSIsImEiOiJjazE3amtzOGoxZDRkM21weW9zN3d1bWdyIn0.LpwvQ-ITmH9mr3dRtUKN9Q';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/evanura/ck2p6u8bo1d371ct1k6l1ihi8',
+  center: [-0, -0],
+  zoom: 2.7
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-7.591778909744221, 5.959696537681808]
+    },
+    properties: {
+      title: 'Abyssal Ledge',
+      description: 'Alue: kieleke'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [13.277291968269992, 3.580944280144408]
+    },
+    properties: {
+      title: 'The Canyons',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0.3246962024525146, 9.107263261008171]
+    },
+    properties: {
+      title: 'Death Drink Springs',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [1.4741610066403155, -18.337114225139146]
+    },
+    properties: {
+      title: 'Dustytop Fort',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [5.68765158312317, 18.377015064286937]
+    },
+    properties: {
+      title: 'Echoback Canyon',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [10.63772216767211, 18.75115479439576]
+    },
+    properties: {
+      title: 'Echoback Fort',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [10.11013176923359, 2.7375916030180463]
+    },
+    properties: {
+      title: 'Forgotten Mine',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [1.066518779012199, 16.50353591992672]
+    },
+    properties: {
+      title: 'Gates of Andoral',
+      description: 'Alue: portti'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [15.484438759195427, 11.79460212078726]
+    },
+    properties: {
+      title: 'Gates of Toth',
+      description: 'Alue: portti'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [5.369697085381631, -3.6681198868000138]
+    },
+    properties: {
+      title: 'Giant´s Staircase',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-11.555027940530977, 12.732528200771497]
+    },
+    properties: {
+      title: 'Griffon Wing Keep',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0.22035339334604487, -11.127836977108231]
+    },
+    properties: {
+      title: 'Iska´s Stand',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [19.175269701525394, 1.4823431259177227]
+    },
+    properties: {
+      title: 'Lost Spring Canyon',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [3.1715500052192738, 0.19131868533452234]
+    },
+    properties: {
+      title: 'Lost Wash Creek',
+      description: 'Alue: puro'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.33901700861702, -9.509508342391513]
+    },
+    properties: {
+      title: 'Nazaire´s Pass',
+      description: 'Alue, sola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-6.926212571087717, 24.14089841622149]
+    },
+    properties: {
+      title: 'Old Prison Road',
+      description: 'Alue: tie'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-3.77268880423253, 28.131398802599193]
+    },
+    properties: {
+      title: 'Prison Ruins',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [11.785805293062822, 1.0657379917949896]
+    },
+    properties: {
+      title: 'Sand Rock Mine',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [11.062269349867279, -14.758367255247492]
+    },
+    properties: {
+      title: 'Shimmer Stone Mine',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [9.063283416070362, 7.129430789510096]
+    },
+    properties: {
+      title: 'The Still Ruins',
+      description: 'Alue: linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [5.588978210437062, 2.6291124383104574]
+    },
+    properties: {
+      title: 'Valemont Pass',
+      description: 'Alue, sola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [2.245103218917052, 25.657744183809356]
+    },
+    properties: {
+      title: 'Coracavus',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-4.707705478384696, 1.6955981550248111]
+    },
+    properties: {
+      title: 'Craggy Ridge Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [5.577910685114489, 22.260163012790485]
+    },
+    properties: {
+      title: 'Echo Back Canyon Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [19.906743001290806, 3.763312260442902]
+    },
+    properties: {
+      title: 'Lost Spring Canyon Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [7.390405816272505, -11.292656921183337]
+    },
+    properties: {
+      title: 'Nazaire´s Pass Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [5.552926203600464, -11.394510355038577]
+    },
+    properties: {
+      title: 'Griffon Wing Monument',
+      description: 'Maamerkki: Patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-5.860748818620891, 4.4938563188075875]
+    },
+    properties: {
+      title: 'Hidden Stairway',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [2.5513990399945214, -5.1728178133487575]
+    },
+    properties: {
+      title: 'Lamarr Tower',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [9.25839832576753, 22.322211274118658]
+    },
+    properties: {
+      title: 'The Last Step',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-9.659967446884139, 11.915008683340858]
+    },
+    properties: {
+      title: 'The Old Well',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-6.630106502770218, -9.033117690721852]
+    },
+    properties: {
+      title: 'Ritual Tower',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.131102123636879, -0.9584816871999493]
+    },
+    properties: {
+      title: 'Oasis Cave',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-1.9962624311680202, 2.1777609681935672]
+    },
+    properties: {
+      title: 'Underground Cavern',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [2.837898277340855, -2.0163245881676204]
+    },
+    properties: {
+      title: 'Shortcut',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.434391000666437, -20.326475893195592]
+    },
+    properties: {
+      title: 'The Wastes',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0.005884177763391563, -6.90395445723162]
+    },
+    properties: {
+      title: 'The Surveyor',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-1.9801002450934675, -0.3997135425805851]
+    },
+    properties: {
+      title: 'Zhores Tower',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-3.5283848122389827, 8.179971141257937]
+    },
+    properties: {
+      title: 'Tesoro Tower',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-3.772516830884001, -6.209697685694991]
+    },
+    properties: {
+      title: 'Sand Flats',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-6.4822660995668, 13.554828137044879]
+    },
+    properties: {
+      title: 'Dust Plains',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0.5032872131627073, 0.16232183347317175]
+    },
+    properties: {
+      title: 'Blight Overlook',
+      description: 'Alue'
+    }
+  }]
+};
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
+
+});
+
+
+
+</script>
+
+</body>
+</html>

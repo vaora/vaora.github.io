@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+	  .marker {
+  background-image: url('mapbox-icon');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbnVyYSIsImEiOiJjazE3amtzOGoxZDRkM21weW9zN3d1bWdyIn0.LpwvQ-ITmH9mr3dRtUKN9Q';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/evanura/ck2ngssvn04mi1cl26x48jguk',
+  center: [-0, -0],
+  zoom: 3.5
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [14.538235430377654, 14.79672883405199]
+    },
+    properties: {
+      title: 'Fisher´s End Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [13.818360103094392, 13.161601222492095]
+    },
+    properties: {
+      title: 'Fisher´s End',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [12.576311273991791, 12.178198176107998]
+    },
+    properties: {
+      title: 'Light of Andraste',
+      description: 'Maamerkki: Patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [9.513830578214993, 1.6308458181531194]
+    },
+    properties: {
+      title: 'Old Thoroughfare Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.831528702379046, 8.71274119071802]
+    },
+    properties: {
+      title: 'Old Thoroughfare',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-1.7714623851563829, 3.5908289650670184]
+    },
+    properties: {
+      title: 'The Misty Grove',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-3.983184174081657, 4.755347821589339]
+    },
+    properties: {
+      title: 'The Den',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-5.0416521279238395, 7.222154138137128]
+    },
+    properties: {
+      title: 'Hidden Apostate´s Camp',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [7.238045836161291, -4.461376818565441]
+    },
+    properties: {
+      title: 'Granite Point',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [1.8531542101924288, -9.445302071984926]
+    },
+    properties: {
+      title: 'Old Windmill',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-2.418851067409719, -8.141715345962211]
+    },
+    properties: {
+      title: 'The Weeping Spires',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-10.501321098346239, -13.492799133457353]
+    },
+    properties: {
+      title: 'Hargrave Keep',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-13.855548568890754, -16.574601794065714]
+    },
+    properties: {
+      title: 'Avvar Leader´s Base Camp',
+      description: 'Linnakkeen osa'
+    }
+  }]
+};
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
+
+});
+
+
+
+</script>
+
+</body>
+</html>

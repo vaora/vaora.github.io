@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+	  .marker {
+  background-image: url('mapbox-icon');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbnVyYSIsImEiOiJjazE3amtzOGoxZDRkM21weW9zN3d1bWdyIn0.LpwvQ-ITmH9mr3dRtUKN9Q';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/evanura/ck2p3t9470p021cqudwavmhga',
+  center: [-0, -0],
+  zoom: 2.7
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-17.902576624468566, 0.2152832992623388]
+    },
+    properties: {
+      title: 'Ancient Road',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-7.789450442812381, -19.182892678050308]
+    },
+    properties: {
+      title: 'Burial Grounds',
+      description: 'Alue: tasanne'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-9.373884769154188, -5.437024025532438]
+    },
+    properties: {
+      title: 'The Canyon',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-7.174652290783342, -2.4833222502183645]
+    },
+    properties: {
+      title: 'Canyon Overlook',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-8.905513952522824, 21.986457756186283]
+    },
+    properties: {
+      title: 'The Colossus (of Orlais)',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.513172434251373, -21.65301958868281]
+    },
+    properties: {
+      title: 'The Cove',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [11.020197943660492, -22.600945535698727]
+    },
+    properties: {
+      title: 'The Cove Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-11.234618529313593, -13.175013230914928]
+    },
+    properties: {
+      title: 'Logging Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-19.033165562647923, 8.520318811353675]
+    },
+    properties: {
+      title: 'Golden Oasis',
+      description: 'Alue: laakso'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-15.498431085310926, 13.24365116486355]
+    },
+    properties: {
+      title: 'The Rippling Dunes ',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-2.464579592410587, 19.485459987961335]
+    },
+    properties: {
+      title: 'Rock Top Ridge',
+      description: 'Alue: harjanne'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.624485357600406, -9.636196476023173]
+    },
+    properties: {
+      title: 'Lonely Light',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [11.242478329583719, 11.386592611084055]
+    },
+    properties: {
+      title: 'Sunstop Mountains',
+      description: 'Alue: vuoret'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [24.951166832477156, -6.847662018724407]
+    },
+    properties: {
+      title: 'Tomb of Fairel',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.32540779224064, 3.226238441911221]
+    },
+    properties: {
+      title: 'Mountain Fortress Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.23057720991983, 15.149679643263255]
+    },
+    properties: {
+      title: 'Sunstop Mountain Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-6.299181933179284, 18.862472673444955]
+    },
+    properties: {
+      title: 'Statue Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0.49575072483457916, -5.587054164286343]
+    },
+    properties: {
+      title: 'Sand Crags Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [10.320421888057353, 3.2779424900554375]
+    },
+    properties: {
+      title: 'Blocked doorway',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0.11765834022799027, -4.177938720553229]
+    },
+    properties: {
+      title: 'The Four Pillars',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.938836857566912, 10.714992001995824]
+    },
+    properties: {
+      title: 'Stone over sky',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-6.2714248057178565, -21.37452112441848]
+    },
+    properties: {
+      title: 'The Empty Square',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [2.9148871041468283, -9.73301271708634]
+    },
+    properties: {
+      title: 'The Sand Crags',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-12.921884257999409, -3.1000553940228173]
+    },
+    properties: {
+      title: 'The Canyon Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-14.03035914857287, -13.602528092658574]
+    },
+    properties: {
+      title: 'Shallow Basin',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-16.22380643513702, -7.93665778130412]
+    },
+    properties: {
+      title: 'Venatori Canyon Camp',
+      description: 'Alue: vihollisleiri'
+    }
+  }]
+};
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
+
+});
+
+
+
+</script>
+
+</body>
+</html>

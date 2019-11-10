@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+	  .marker {
+  background-image: url('mapbox-icon');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbnVyYSIsImEiOiJjazE3amtzOGoxZDRkM21weW9zN3d1bWdyIn0.LpwvQ-ITmH9mr3dRtUKN9Q';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/evanura/ck2ow7h3i13qs1ct1iwwdou6n',
+  center: [0, 0],
+  zoom: 2.8
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [16.101422421863845, 0.5907382369279048]
+    },
+    properties: {
+      title: 'Apostate´s Landing',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-0.16978105385021536, -12.773814899628803]
+    },
+    properties: {
+      title: 'Driftwood Margin ',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [19.804568039220726, 8.452230768177685]
+    },
+    properties: {
+      title: 'Great Cove',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [23.56577844103913, 8.756494200421272]
+    },
+    properties: {
+      title: 'Hessarian Camp',
+      description: 'Alue: vihollisleiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [15.708955862728885, -12.961634147752818]
+    },
+    properties: {
+      title: 'Long River',
+      description: 'Alue: joki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [28.351118739772573, -28.731604041063726]
+    },
+    properties: {
+      title: 'Lyriym Falls',
+      description: 'Maamerkki: vesiputous'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [4.999874115851412, 20.204055407567523]
+    },
+    properties: {
+      title: 'Morrin´s Outlook',
+      description: 'Talo'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [11.900152535083407, 3.899497082533415]
+    },
+    properties: {
+      title: 'Morrin´s Steps',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [14.615157455503322,-4.191026650117678]
+    },
+    properties: {
+      title: 'Small Grove',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [22.47003518796498, 24.186436448042457]
+    },
+    properties: {
+      title: 'Storm´s Solitude ',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [21.608604172804007, -0.7801307138227713]
+    },
+    properties: {
+      title: 'The Stone Tree',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [26.171468647269876, -23.144166897950555]
+    },
+    properties: {
+      title: 'Waterfall Cave',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [15.096171349761107, -19.773275709931212]
+    },
+    properties: {
+      title: 'Westridge',
+      description: 'Alue: harjanne'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-12.56042721384813, -0.10359919138358009]
+    },
+    properties: {
+      title: 'Daerwin´s mouth',
+      description: 'Alue: luolasto'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-22.553777268677777, 26.08656433391461]
+    },
+    properties: {
+      title: 'Dragon Island',
+      description: 'Alue: saari'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [2.408833788966035, -13.913214728019952]
+    },
+    properties: {
+      title: 'Driftwood Margin Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [10.087712995355105, -2.663531342744122]
+    },
+    properties: {
+      title: 'Small Grove Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [25.468285506658276, 24.798627177164676]
+    },
+    properties: {
+      title: 'Storm´s Solitude camp',
+      description: 'Leiri'
+    }
+  }]
+};
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
+
+});
+
+
+
+</script>
+
+</body>
+</html>

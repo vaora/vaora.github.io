@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+	  .marker {
+  background-image: url('mapbox-icon');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbnVyYSIsImEiOiJjazE3amtzOGoxZDRkM21weW9zN3d1bWdyIn0.LpwvQ-ITmH9mr3dRtUKN9Q';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/evanura/ck2p1v94t0j1z1ckga46ds9h2',
+  center: [-0, -0],
+  zoom: 2.8
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-18.432253950955896, 2.14017146915468]
+    },
+    properties: {
+      title: 'Alphonse´s Passage',
+      description: 'Alue: tie'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-8.478945950317893, 1.4511972936503952]
+    },
+    properties: {
+      title: 'Drakon´s Rise',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-8.455700837827749, 5.342048277022002]
+    },
+    properties: {
+      title: 'Drakon´s Rise Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-15.586850895091857, 15.991366582158122]
+    },
+    properties: {
+      title: 'Elfsblood River',
+      description: 'Alue: joki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-18.640659371027596, 18.03034029329227]
+    },
+    properties: {
+      title: 'Elfsblood Tower',
+      description: 'Alue: saari'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-23.514682929343735, 16.62050871720892]
+    },
+    properties: {
+      title: 'Elven Ruin',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [17.473532801335523, -7.240610375824701]
+    },
+    properties: {
+      title: 'Etienne´s Ring',
+      description: 'Alue: torni'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-19.03247816796602, 9.020216234368405]
+    },
+    properties: {
+      title: 'Highgrove',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-21.78273342808268, 6.854019565700341]
+    },
+    properties: {
+      title: 'Highgrove Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [4.882453395572384, -5.361934361295582]
+    },
+    properties: {
+      title: 'Judicael´s Crossing',
+      description: 'Alue: Silta'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [25.790284100941108, 1.51208816187237]
+    },
+    properties: {
+      title: 'Judicael´s Ring',
+      description: 'Alue: torni'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [23.857106208187133, 12.804824075598646]
+    },
+    properties: {
+      title: 'Leontine´s Ring',
+      description: 'Alue: torni'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [24.590578868186526, 4.812521751108719]
+    },
+    properties: {
+      title: 'Leontine´s Steward',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [20.11073403180717, 2.120269042906827]
+    },
+    properties: {
+      title: 'Pools of the Sun',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [14.311587374288251, -4.3634838216250245]
+    },
+    properties: {
+      title: 'Hector',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-12.962980416058372, 12.97470047142562]
+    },
+    properties: {
+      title: 'Sahrnia',
+      description: 'Alue: kylä'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-10.548699325977964, -18.238090163217322]
+    },
+    properties: {
+      title: 'Sahrnia Quarry',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-21.13756811344024, -12.630014158322012]
+    },
+    properties: {
+      title: 'Suledin Keep',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-3.4857832248242175, -3.558404995544322]
+    },
+    properties: {
+      title: 'Tower of Bone',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-5.443790806112247, -2.934493217351033]
+    },
+    properties: {
+      title: 'Tower Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-1.0775222562534736, 7.73303214658317]
+    },
+    properties: {
+      title: 'Valeska´s Watch',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-8.966139829212125, 13.190475465249904]
+    },
+    properties: {
+      title: 'Sahrnia Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-22.502218964225563, 12.475412496134567]
+    },
+    properties: {
+      title: 'Crystal Cascade',
+      description: 'Maamerkki: vesiputous'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-24.62442494515585, 6.025698844579452]
+    },
+    properties: {
+      title: 'Dalish Wolf Carving',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-10.249611382972716, 8.721329724323255]
+    },
+    properties: {
+      title: 'Ruined Highway',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [4.886310786934473, 7.518540542975927]
+    },
+    properties: {
+      title: 'Drakon´s Tower',
+      description: 'Alue'
+    }
+  }]
+};
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
+
+});
+
+
+
+</script>
+
+</body>
+</html>
