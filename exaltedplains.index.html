@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+	  .marker {
+  background-image: url('mapbox-icon');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbnVyYSIsImEiOiJjazE3amtzOGoxZDRkM21weW9zN3d1bWdyIn0.LpwvQ-ITmH9mr3dRtUKN9Q';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/evanura/ck2us9paf03d91cnblwb7btxf',
+  center: [-0, -0],
+  zoom: 2.8
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-22.990443181081332, -17.289036939087396]
+    },
+    properties: {
+      title: 'Ancient Baths',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-6.738657624115717, 25.778978084435764]
+    },
+    properties: {
+      title: 'Citadelle du Corbeau ',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [18.96073227177783, 18.795675241700437]
+    },
+    properties: {
+      title: 'Crow Fens',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-17.721602764939462, -17.588527033786235]
+    },
+    properties: {
+      title: 'Dalish Encampment',
+      description: 'Alue: nomadileiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [19.5593869220711, 5.779587926489981]
+    },
+    properties: {
+      title: 'Dead Hand',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [2.0349712984440202, 3.3140495128945417]
+    },
+    properties: {
+      title: 'Eastern Ramparts',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-17.431343292915585, -8.556715207387484]
+    },
+    properties: {
+      title: 'Enavuris',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [11.299940639470151, -1.9743728242557381]
+    },
+    properties: {
+      title: 'Fort Revasan',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [15.78601378572148, 6.512039966554937]
+    },
+    properties: {
+      title: 'Ghilan´nain´s Grove',
+      description: 'Alue: sola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-11.785527079027588, -19.677693707141785]
+    },
+    properties: {
+      title: 'Halin´suhlan',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-2.3268082676331687, -12.089144384409323]
+    },
+    properties: {
+      title: 'Path of Flame',
+      description: 'Alue: tie'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [10.785347881777625, 15.880013316894406]
+    },
+    properties: {
+      title: 'Riverside Garrison',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-15.493422462529566, -27.227690792263196]
+    },
+    properties: {
+      title: 'Var Bellanaris',
+      description: 'Alue: hautausmaa'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-12.911846683041517, -30.561540014299368]
+    },
+    properties: {
+      title: 'Unadin Grotto',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [5.087428246124205, 11.440517697116192]
+    },
+    properties: {
+      title: 'Ville Montevelan',
+      description: 'Alue: kylä'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-10.301056262693123, -1.5599519018419272]
+    },
+    properties: {
+      title: 'Victory Rise',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-5.744132831722823, -8.043532634790068]
+    },
+    properties: {
+      title: 'Western Ramparts',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [1.4284862710964035, -14.348944375489026]
+    },
+    properties: {
+      title: 'Path of Flame Camp ',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-3.9737152719350206, 3.8981396267847117]
+    },
+    properties: {
+      title: 'Riverwatch Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [12.515862234005454, 8.891155544380709]
+    },
+    properties: {
+      title: 'Fens Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-0.7881619172023875, -12.97516578726946]
+    },
+    properties: {
+      title: 'Guardians of the Path',
+      description: 'Maamerkki: patsas x 2'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-9.76411442018184, -10.419386384839342]
+    },
+    properties: {
+      title: 'Ruined Arches',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [3.6582158458170397, -2.8540887369412076]
+    },
+    properties: {
+      title: 'Andruil´s Messenger',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [18.235709985638664, 15.695382922079546]
+    },
+    properties: {
+      title: 'Broken Dog',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [14.647060819921535, 22.615225634729867]
+    },
+    properties: {
+      title: 'Offering to the Dread Wolf',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-4.585808544310794, 24.40230964849721]
+    },
+    properties: {
+      title: 'The Raven',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.524528132079013, 11.700151573102062]
+    },
+    properties: {
+      title: 'Triumph of the Light',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-3.96109529489172, -3.874531582493475]
+    },
+    properties: {
+      title: 'Lindiranae´s Fall',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-8.044840991681212, -6.281591781620307]
+    },
+    properties: {
+      title: 'Demetrius´s End',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-1.765219289119841, -0.9496097946747994]
+    },
+    properties: {
+      title: 'Riel',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-7.5295091830619185, -22.969954166241862]
+    },
+    properties: {
+      title: 'Shrine to Sylaise',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-1.213046543591986, 22.40509866286746]
+    },
+    properties: {
+      title: 'Northern Ramparts ',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-7.9505855381240735, 3.2069533653213966]
+    },
+    properties: {
+      title: 'Desolate Bank',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [5.289011632158008, 16.590668640915055]
+    },
+    properties: {
+      title: 'Pont Agur',
+      description: 'Maamerkki: silta'
+    }
+  }]
+};
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
+
+});
+
+
+
+</script>
+
+</body>
+</html>
