@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+	  .marker {
+  background-image: url('mapbox-icon');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbnVyYSIsImEiOiJjazE3amtzOGoxZDRkM21weW9zN3d1bWdyIn0.LpwvQ-ITmH9mr3dRtUKN9Q';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/evanura/ck2rvmpd937v41cqu7laptzep',
+  center: [-0, -0],
+  zoom: 2.7
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [2.23043101507983, 9.246175772868426]
+    },
+    properties: {
+      title: 'Apostate Stronghold',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-7.235240797652068, -14.762000808951527]
+    },
+    properties: {
+      title: 'Avvar Blade Valley',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [23.56927410416654, 14.138235554473852]
+    },
+    properties: {
+      title: 'Blood Cliffs',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.419555290297012, -3.0613191990575928]
+    },
+    properties: {
+      title: 'The Crossroads',
+      description: 'Alue: kylä'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-17.152904946134754, 12.082722615039572]
+    },
+    properties: {
+      title: 'Dead Ram Grove',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [12.556009809683133, -0.6670313921594015]
+    },
+    properties: {
+      title: 'East Road',
+      description: 'Alue: tie'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.208032354348688, 17.911780203622186]
+    },
+    properties: {
+      title: 'Redcliffe Village',
+      description: 'Alue: kylä'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-8.845952951168783, 6.764857454259712]
+    },
+    properties: {
+      title: 'Forannan Ravine',
+      description: 'Alue: joki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-20.8725507673862, -22.560536645859926]
+    },
+    properties: {
+      title: 'Grand Forest Villa',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-16.86374786844067, -15.746223546841378]
+    },
+    properties: {
+      title: 'Hafter´s Woods',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-1.530871300022227, -9.557662963191731]
+    },
+    properties: {
+      title: 'Lake Luthias',
+      description: 'Alue: järvi'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-27.190271874943846, -15.035579254177108]
+    },
+    properties: {
+      title: 'Old Simeon´s Cave',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [11.134735052476685, -10.337160207585839]
+    },
+    properties: {
+      title: 'The Outskirts',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [15.234674536853731, 4.469380043763508]
+    },
+    properties: {
+      title: 'Rebel Queen´s Ravine',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-16.140532165399577, 3.943163978173942]
+    },
+    properties: {
+      title: 'Redcliffe Farms',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.920750172074577, 8.733086960124794]
+    },
+    properties: {
+      title: 'Redcliffe Road',
+      description: 'Alue: tie'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [16.651027308349967, -12.5194033095364]
+    },
+    properties: {
+      title: 'Smuggler´s Cave',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-6.650235067533686, -8.31996597739959]
+    },
+    properties: {
+      title: 'Templar Encampment',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-1.4195458204744682, -14.119208283270751]
+    },
+    properties: {
+      title: 'Valammar Gate',
+      description: 'Alue: portti'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-18.5800130045086, -5.531220319108456]
+    },
+    properties: {
+      title: 'Western Outskirts',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [15.95337721215526, -23.21456479205203]
+    },
+    properties: {
+      title: 'Winterwatch Tower',
+      description: 'Alue: torni'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [12.014963197456723, -24.42954854370423]
+    },
+    properties: {
+      title: 'Winterwatch Cave',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [2.4217122608018826, 3.1823572137196123]
+    },
+    properties: {
+      title: 'Witchwood',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-5.438141494365482, 11.542127947883031]
+    },
+    properties: {
+      title: 'Wolf Hollow',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-12.254985319248817, 3.3253896725319407]
+    },
+    properties: {
+      title: 'Redcliffe Farms Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-0.3043915033006215, -7.142102564513991]
+    },
+    properties: {
+      title: 'Upper Lake Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [14.931893537669907, 2.259934380420674]
+    },
+    properties: {
+      title: 'Dusklight Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [9.762877462234883, -5.93889292408798]
+    },
+    properties: {
+      title: 'Outskirts Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [13.326453801893308, -17.238286904639367]
+    },
+    properties: {
+      title: 'Dwarfson´s Pass Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [26.848107633143627, -21.962961466570846]
+    },
+    properties: {
+      title: 'Ash Warrior´s Refuge',
+      description: 'Luola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [19.272485629749895, -20.15353641513471]
+    },
+    properties: {
+      title: 'Dwarfson´s Pass',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [21.052062749419633, -18.48851354158056]
+    },
+    properties: {
+      title: 'The Tempter Burns',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [3.1163584063217513, -7.2610496974761105]
+    },
+    properties: {
+      title: 'Calenhad´s Foothold',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-5.640838107380318, 0.13013160978327676]
+    },
+    properties: {
+      title: 'Fort Connor',
+      description: 'Linnake'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-2.925094825945962, -2.738334838438746]
+    },
+    properties: {
+      title: 'West Road',
+      description: 'Alue: tie'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-8.238087020246553, -2.9453082015815397]
+    },
+    properties: {
+      title: 'Broken Bridge',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-19.975710683173475, -11.79543941079217]
+    },
+    properties: {
+      title: 'Forest Camp',
+      description: 'Leiri'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [4.805633411308349, 14.456457957055889]
+    },
+    properties: {
+      title: 'Redcliffe Windmill',
+      description: 'Maamerkki'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [6.987748956261271, 18.481519233148404]
+    },
+    properties: {
+      title: 'Hero of Ferelden',
+      description: 'Maamerkki: patsas'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [16.752508817367925, 8.741412494098995]
+    },
+    properties: {
+      title: 'Lady Shauna´s Valley',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [22.910779776026175, 16.59582979210225]
+    },
+    properties: {
+      title: 'Dragonling Nest',
+      description: 'Alue'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-4.432921934564206, 6.97564770400534]
+    },
+    properties: {
+      title: 'Gully of the Burnt Men',
+      description: 'Alue: sola'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [9.032364909303283, 20.967478181949232]
+    },
+    properties: {
+      title: 'The Gull and Lantern',
+      description: 'Majatalo'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.315144408899869, 23.209228501814792]
+    },
+    properties: {
+      title: 'Redcliffe Village Chantry',
+      description: 'Alue: rakennus'
+    }
+  }]
+};
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
+
+});
+
+
+
+</script>
+
+</body>
+</html>
